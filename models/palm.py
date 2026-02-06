@@ -1,11 +1,10 @@
-import os
+import tensorflow as tf
 
-DATASET_DIR = "palm_data"
+gpu_devices = tf.config.list_physical_devices('GPU')
 
-if not os.path.exists(DATASET_DIR):
-    print(f" foldeer mising; i cant find '{DATASET_DIR}'"
+if gpu_devices:
+    print(f" GPU is ready now: {gpu_devices[0]}"
           )
-else:
-    classes = [d for d in os.listdir(DATASET_DIR) if os.path.isdir(os.path.join(DATASET_DIR, d))
-               ]
-    print(f" sucess : found {len(classes)} people : {classes}")
+else: 
+    print("GPU NOT FOUND"
+          )
